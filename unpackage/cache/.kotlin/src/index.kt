@@ -1,4 +1,4 @@
-package uni.HBuilder;
+package uni.UNI5509411;
 import io.dcloud.uniapp.*;
 import io.dcloud.uniapp.extapi.*;
 import io.dcloud.uniapp.framework.*;
@@ -22,19 +22,19 @@ var firstBackTime: Number = 0;
 open class GenApp : BaseApp {
     constructor(instance: ComponentInternalInstance) : super(instance) {
         onLaunch(fun(_: OnLaunchOptions) {
-            console.log("App Launch", " at App.uvue:6");
+            console.log("App Launch", " at App.uvue:5");
         }
         , instance);
         onAppShow(fun(_: OnShowOptions) {
-            console.log("App Show", " at App.uvue:9");
+            console.log("App Show", " at App.uvue:8");
         }
         , instance);
         onHide(fun() {
-            console.log("App Hide", " at App.uvue:12");
+            console.log("App Hide", " at App.uvue:11");
         }
         , instance);
         onLastPageBackPress(fun() {
-            console.log("App LastPageBackPress", " at App.uvue:15");
+            console.log("App LastPageBackPress", " at App.uvue:14");
             if (firstBackTime == 0) {
                 uni_showToast(ShowToastOptions(title = "再按一次退出应用", position = "bottom"));
                 firstBackTime = Date.now();
@@ -48,7 +48,7 @@ open class GenApp : BaseApp {
         }
         , instance);
         onExit(fun() {
-            console.log("App Exit", " at App.uvue:31");
+            console.log("App Exit", " at App.uvue:30");
         }
         , instance);
     }
@@ -72,9 +72,6 @@ val GenAppClass = CreateVueAppComponent(GenApp::class.java, fun(): VueComponentO
     return GenApp(instance);
 }
 );
-interface Web {
-    var connection: Any;
-}
 val GenPagesIndexIndexClass = CreateVueComponent(GenPagesIndexIndex::class.java, fun(): VueComponentOptions {
     return VueComponentOptions(name = "", inheritAttrs = true, props = Map(), propsNeedCastKeys = utsArrayOf(), emits = Map(), components = Map(), styles = GenPagesIndexIndex.styles);
 }
@@ -94,8 +91,8 @@ fun main(app: IApp) {
     (createApp()["app"] as VueApp).mount(app);
 }
 open class UniAppConfig : AppConfig {
-    override var name: String = "uniAppx";
-    override var appid: String = "";
+    override var name: String = "uts-plugin";
+    override var appid: String = "__UNI__5509411";
     override var versionName: String = "1.0.0";
     override var versionCode: String = "100";
     override var uniCompileVersion: String = "3.98";

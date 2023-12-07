@@ -1,4 +1,4 @@
-package uni.HBuilder;
+package uni.UNI5509411;
 import io.dcloud.uniapp.*;
 import io.dcloud.uniapp.extapi.*;
 import io.dcloud.uniapp.framework.*;
@@ -14,170 +14,100 @@ import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.Deferred;
 import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.async;
-import io.dcloud.uniapp.extapi.createWebviewContext as uni_createWebviewContext;
-import io.dcloud.uniapp.extapi.showModal as uni_showModal;
+import uts.sdk.modules.emChat.initChat;
+import uts.sdk.modules.emChat.loginEM;
+import uts.sdk.modules.emChat.logoutEM;
+import uts.sdk.modules.emChat.sendTextMessage;
+import uts.sdk.modules.emChat.createUser;
 open class GenPagesIndexIndex : BasePage {
     constructor(instance: ComponentInternalInstance) : super(instance) {
-        onReady(fun() {
-            this.webviewContext = uni_createWebviewContext("web-view", this);
-        }
-        , instance);
+        onLoad(fun(_: OnLoadOptions) {}, instance);
     }
     @Suppress("UNUSED_PARAMETER")
     override fun `$render`(): VNode? {
         val _ctx = this;
         val _component_button = resolveComponent("button");
-        return createElementVNode("view", utsMapOf("class" to "uni-flex-item"), utsArrayOf(
-            createElementVNode("web-view", utsMapOf("id" to "web-view", "class" to "uni-flex-wv", "src" to _ctx.src, "webview-styles" to _ctx.webview_styles, "onMessage" to _ctx.message, "onError" to _ctx.error, "onLoading" to _ctx.loading, "onLoaded" to _ctx.loaded, "onDownload" to _ctx.download), null, 40, utsArrayOf(
-                "src",
-                "webview-styles",
-                "onMessage",
-                "onError",
-                "onLoading",
-                "onLoaded",
-                "onDownload"
+        return createElementVNode("view", utsMapOf("class" to "content"), utsArrayOf(
+            createElementVNode("image", utsMapOf("class" to "logo", "src" to "/static/logo.png")),
+            createElementVNode("view", utsMapOf("class" to "text-area"), utsArrayOf(
+                createElementVNode("text", utsMapOf("class" to "title"), toDisplayString(_ctx.title), 1)
             )),
-            createElementVNode("view", utsMapOf("class" to "uni-padding-wrap uni-common-mt"), utsArrayOf(
-                createElementVNode("view", utsMapOf("class" to "uni-input-v"), utsArrayOf(
-                    createElementVNode("input", utsMapOf("class" to "uni-input", "confirmType" to "go", "placeholder" to "输入网址跳转", "onConfirm" to _ctx.confirm), null, 40, utsArrayOf(
-                        "onConfirm"
-                    ))
+            createElementVNode("view", utsMapOf("class" to "opt-wrap"), utsArrayOf(
+                createVNode(_component_button, utsMapOf("type" to "primary", "class" to "btn", "onClick" to _ctx.init), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
+                    return utsArrayOf(
+                        " 初始化SDK "
+                    );
+                }
+                ), "_" to 1), 8, utsArrayOf(
+                    "onClick"
                 )),
-                createElementVNode("view", utsMapOf("class" to "uni-row uni-btn-v"), utsArrayOf(
-                    createVNode(_component_button, utsMapOf("class" to "uni-flex-item", "type" to "primary", "onClick" to _ctx.back), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
-                        return utsArrayOf(
-                            "后退"
-                        );
-                    }
-                    ), "_" to 1), 8, utsArrayOf(
-                        "onClick"
-                    )),
-                    createVNode(_component_button, utsMapOf("class" to "uni-btn-ml uni-flex-item", "type" to "primary", "onClick" to _ctx.forward), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
-                        return utsArrayOf(
-                            "前进"
-                        );
-                    }
-                    ), "_" to 1), 8, utsArrayOf(
-                        "onClick"
-                    ))
+                createVNode(_component_button, utsMapOf("class" to "btn", "onClick" to _ctx.createAccount), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
+                    return utsArrayOf(
+                        " 注册 "
+                    );
+                }
+                ), "_" to 1), 8, utsArrayOf(
+                    "onClick"
                 )),
-                createElementVNode("view", utsMapOf("class" to "uni-row uni-btn-v"), utsArrayOf(
-                    createVNode(_component_button, utsMapOf("class" to "uni-flex-item", "type" to "primary", "onClick" to _ctx.reload), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
-                        return utsArrayOf(
-                            "重新加载"
-                        );
-                    }
-                    ), "_" to 1), 8, utsArrayOf(
-                        "onClick"
-                    )),
-                    createVNode(_component_button, utsMapOf("class" to "uni-btn-ml uni-flex-item", "type" to "primary", "onClick" to _ctx.stop), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
-                        return utsArrayOf(
-                            "停止加载"
-                        );
-                    }
-                    ), "_" to 1), 8, utsArrayOf(
-                        "onClick"
-                    ))
+                createVNode(_component_button, utsMapOf("class" to "btn", "onClick" to _ctx.login), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
+                    return utsArrayOf(
+                        " 登录 "
+                    );
+                }
+                ), "_" to 1), 8, utsArrayOf(
+                    "onClick"
                 )),
-                createElementVNode("view", utsMapOf("class" to "uni-btn-v"), utsArrayOf(
-                    createVNode(_component_button, utsMapOf("type" to "primary", "onClick" to _ctx.nativeToWeb), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
-                        return utsArrayOf(
-                            "原生和Web通信"
-                        );
-                    }
-                    ), "_" to 1), 8, utsArrayOf(
-                        "onClick"
-                    ))
+                createVNode(_component_button, utsMapOf("class" to "btn", "onClick" to _ctx.sendMessage), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
+                    return utsArrayOf(
+                        " 发送消息 "
+                    );
+                }
+                ), "_" to 1), 8, utsArrayOf(
+                    "onClick"
+                )),
+                createVNode(_component_button, utsMapOf("type" to "warn", "class" to "btn", "onClick" to _ctx.logout), utsMapOf("default" to withCtx(fun(): UTSArray<Any> {
+                    return utsArrayOf(
+                        " 登出 "
+                    );
+                }
+                ), "_" to 1), 8, utsArrayOf(
+                    "onClick"
                 ))
             ))
         ));
     }
-    open var src: String by `$data`;
-    open var webview_styles: UTSJSONObject by `$data`;
-    open var webviewContext: WebviewContext? by `$data`;
-    open var loadError: Boolean by `$data`;
-    open var conn: Any? by `$data`;
+    open var title: String by `$data`;
     @Suppress("USELESS_CAST")
     override fun data(): Map<String, Any?> {
-        return utsMapOf("src" to "../static/index.html", "webview_styles" to object : UTSJSONObject() {
-            var progress = object : UTSJSONObject() {
-                var color = "#FF3333"
-            }
-        }, "webviewContext" to null as WebviewContext?, "loadError" to false, "conn" to null);
+        return utsMapOf("title" to "Eeasemob Android SDK");
     }
     override fun `$initMethods`() {
-        this.back = fun() {
-            this.webviewContext?.back();
+        this.init = fun() {
+            initChat("你自己的环信AppKey");
         }
         ;
-        this.forward = fun() {
-            this.webviewContext?.forward();
+        this.createAccount = fun() {
+            createUser("uniappx", "123");
         }
         ;
-        this.reload = fun() {
-            this.webviewContext?.reload();
+        this.login = fun() {
+            loginEM("sttest", "123");
         }
         ;
-        this.stop = fun() {
-            this.webviewContext?.stop();
+        this.logout = fun() {
+            logoutEM();
         }
         ;
-        this.nativeToWeb = fun() {
-            this.webviewContext?.evalJS("alert('hello uni-app x')");
-        }
-        ;
-        this.message = fun(event: WebViewMessageEvent) {
-            if (event.detail.data !== null) {
-                val data = event.detail.data;
-                val websdk: Any = data?.get("websdk") as Any;
-                this.initSdk(websdk);
-            }
-        }
-        ;
-        this.initSdk = fun(sdk: Any) {
-            console.log((sdk as Web).connection, "sdk", " at pages/index/index.uvue:74");
-        }
-        ;
-        this.error = fun(event: WebViewErrorEvent) {
-            this.loadError = true;
-            console.log(JSON.stringify(event), " at pages/index/index.uvue:78");
-        }
-        ;
-        this.loading = fun(event: WebViewLoadingEvent) {
-            console.log(JSON.stringify(event), " at pages/index/index.uvue:81");
-        }
-        ;
-        this.loaded = fun(event: WebViewLoadedEvent) {
-            console.log(JSON.stringify(event), " at pages/index/index.uvue:84");
-        }
-        ;
-        this.download = fun(event: WebViewDownloadEvent) {
-            console.log(JSON.stringify(event), " at pages/index/index.uvue:87");
-            uni_showModal(ShowModalOptions(content = "下载链接: " + event.detail.url + "\n文件大小: " + event.detail.contentLength / 1024 + "KB", showCancel = false));
-        }
-        ;
-        this.confirm = fun(event: InputConfirmEvent) {
-            console.log(JSON.stringify(event), " at pages/index/index.uvue:94");
-            var url = event.detail.value;
-            if (!url.startsWith("https://") && !url.startsWith("http://")) {
-                url = "https://" + url;
-            }
-            this.src = url;
+        this.sendMessage = fun() {
+            sendTextMessage("你好啊", "yjj");
         }
         ;
     }
-    open lateinit var back: () -> Unit;
-    open lateinit var forward: () -> Unit;
-    open lateinit var reload: () -> Unit;
-    open lateinit var stop: () -> Unit;
-    open lateinit var nativeToWeb: () -> Unit;
-    open lateinit var message: (event: WebViewMessageEvent) -> Unit;
-    open lateinit var initSdk: (sdk: Any) -> Unit;
-    open lateinit var error: (event: WebViewErrorEvent) -> Unit;
-    open lateinit var loading: (event: WebViewLoadingEvent) -> Unit;
-    open lateinit var loaded: (event: WebViewLoadedEvent) -> Unit;
-    open lateinit var download: (event: WebViewDownloadEvent) -> Unit;
-    open lateinit var confirm: (event: InputConfirmEvent) -> Unit;
+    open lateinit var init: () -> Unit;
+    open lateinit var createAccount: () -> Unit;
+    open lateinit var login: () -> Unit;
+    open lateinit var logout: () -> Unit;
+    open lateinit var sendMessage: () -> Unit;
     companion object {
         val styles: Map<String, Map<String, Map<String, Any>>>
             get() {
@@ -189,7 +119,7 @@ open class GenPagesIndexIndex : BasePage {
             }
         val styles0: Map<String, Map<String, Map<String, Any>>>
             get() {
-                return utsMapOf("uni-flex-wv" to padStyleMapOf(utsMapOf("width" to "100%", "height" to 200)), "uni-input-v" to padStyleMapOf(utsMapOf("padding" to "10rpx 0")), "uni-btn-ml" to padStyleMapOf(utsMapOf("marginLeft" to "10rpx")));
+                return utsMapOf("content" to padStyleMapOf(utsMapOf("display" to "flex", "alignItems" to "center", "justifyContent" to "center")), "logo" to padStyleMapOf(utsMapOf("height" to "200rpx", "width" to "200rpx", "marginTop" to "200rpx", "marginBottom" to "50rpx")), "opt-wrap" to padStyleMapOf(utsMapOf("width" to "100%")), "title" to padStyleMapOf(utsMapOf("fontSize" to "36rpx", "color" to "#8f8f94")), "btn" to padStyleMapOf(utsMapOf("marginTop" to "20rpx")));
             }
     }
 }

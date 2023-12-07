@@ -1,7 +1,7 @@
 {
-    "name" : "uniAppx",
-    "appid" : "",
-    "description" : "",
+    "name" : "uts-plugin",
+    "appid" : "__UNI__5509411",
+    "description" : "uts-plugin",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "uni-app-x" : {},
