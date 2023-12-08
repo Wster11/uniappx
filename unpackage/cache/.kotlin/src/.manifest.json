@@ -9,8 +9,8 @@
       "md5": "c4ff8954253543cb01243db9708ff1e6097f36e7"
     },
     "pages/index/index.kt": {
-      "md5": "fc5b91a40c015d8a62f8f78c22f68faa04334202",
-      "class": "GenPagesIndexIndex"
+      "class": "GenPagesIndexIndex",
+      "md5": "c9d0241fe3672e3d7dc914782cf580ccb1a098da"
     }
   }
 }

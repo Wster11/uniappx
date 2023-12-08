@@ -10,11 +10,12 @@ import EMMessage from 'com.hyphenate.chat.EMMessage';
 import EMMessageListener from 'com.hyphenate.EMMessageListener';
 import EMTextMessageBody from 'com.hyphenate.chat.EMTextMessageBody';
 import HyphenateException from 'com.hyphenate.exceptions.HyphenateException';
-
+import EMConversation from 'com.hyphenate.chat.EMConversation';
+import { Options } from "../interface.uts"
 /**
  * 初始化SDK
  */
-export function initChat(appkey : string) : void {
+export function initChat(appkey : string) : Options {
 	const options = new EMOptions();
 	// 设置环信AppKey
 	options.setAppKey(appkey);
@@ -24,6 +25,15 @@ export function initChat(appkey : string) : void {
 	EMClient.getInstance().init(UTSAndroid.getAppContext(), options)
 	EMClient.getInstance().addConnectionListener(new ConnectioonListener());
 	EMClient.getInstance().chatManager().addMessageListener(new MessageListener());
+
+    const getAppKey = function ():string {
+		return options.getAppKey();
+	}
+	const res : Options = {
+		appkey: options.getAppKey(),
+		getAppKey
+	};
+	return res;
 }
 
 /**
@@ -56,6 +66,7 @@ export function sendTextMessage(msg : string, to : string) {
 	const message = EMMessage.createTxtSendMessage(msg, to)
 	EMClient.getInstance().chatManager().sendMessage(message);
 }
+
 
 /**
  * EM Login回调实现类

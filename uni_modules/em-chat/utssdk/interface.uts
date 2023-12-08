@@ -1,0 +1,7 @@
+
+export type Options = {
+	appkey : string,
+	getAppKey: () => string
+}
+
+

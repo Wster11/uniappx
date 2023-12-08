@@ -83,7 +83,10 @@ open class GenPagesIndexIndex : BasePage {
     }
     override fun `$initMethods`() {
         this.init = fun() {
-            initChat("你自己的环信AppKey");
+            val options = initChat("easemob-demo#support");
+            val getAppKey = options["getAppKey"] as () -> String;
+            console.log(options["appkey"], "appkey", " at pages/index/index.uvue:47");
+            console.log(getAppKey(), "call getAppKey()", " at pages/index/index.uvue:48");
         }
         ;
         this.createAccount = fun() {

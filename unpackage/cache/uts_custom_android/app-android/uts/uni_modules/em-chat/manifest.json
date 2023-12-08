@@ -5,7 +5,10 @@
   },
   "files": {
     "utssdk/app-android/index.uts": {
-      "md5": "c54d1d79aed5b280eead2b3de1340925"
+      "md5": "d4145a699ad2fc1eb243a0c627f42ddd"
+    },
+    "utssdk/interface.uts": {
+      "md5": "1d8e8aae7eaef303405ecde5c7889385"
     },
     "package.json": {
       "md5": "7091de5c78dcaf1cbc90ac46b4d075b0"
