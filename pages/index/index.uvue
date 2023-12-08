@@ -42,7 +42,7 @@
 		},
 		methods: {
 			init() {
-				const options = initChat('easemob-demo#support')
+				const options = initChat('你的appKey')
 				const getAppKey = options['getAppKey'] as () => string;
 				console.log(options['appkey'], 'appkey');
 				console.log(getAppKey(), 'call getAppKey()')
